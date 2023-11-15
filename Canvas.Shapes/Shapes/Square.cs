@@ -14,6 +14,7 @@ namespace Canvas.Shapes.Shapes
 
         public override string Draw()
         {
+            Renderer.Append($"{Name} ");
             Renderer.Append($"Size:{Size} ");
             Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
             return Renderer.ToString();

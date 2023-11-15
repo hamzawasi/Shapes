@@ -19,6 +19,7 @@
 
         public override string Draw() 
         {
+            Renderer.Append($"{Name} ");
             Renderer.Append($"Size:{Size} ");
             Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
             Renderer.Append($"(Height:{Height}, Width:{Width}) ");

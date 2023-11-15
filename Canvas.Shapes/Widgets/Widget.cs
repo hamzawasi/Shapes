@@ -13,7 +13,6 @@ namespace Canvas.Shapes.Widgets
             YCoordinate = yCoordinate;
             Name = typeof(TShape).Name;
             Renderer = new StringBuilder();
-            Renderer.Append($"{Name} ");
         }
 
         public string Name { get; set; }
