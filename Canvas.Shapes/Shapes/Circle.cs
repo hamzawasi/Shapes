@@ -12,17 +12,9 @@ namespace Canvas.Shapes.Shapes
             : base(xCoordinate, yCoordinate)
         {
             Radius = radius;
-            Size = Math.PI * Math.Pow(Radius, 2);
+            Size = Math.Round(Math.PI * Math.Pow(Radius, 2), ShapesConstants.MaxDecimalPlaces);
         }
 
         public double Radius { get; set; }
-
-        public override string Draw()
-        {
-            Renderer.Append($"{Name} ");
-            Renderer.Append($"Size:{Math.Round(Size, ShapesConstants.MaxDecimalPlaces)} ");
-            Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
-            return Renderer.ToString();
-        }
     }
 }

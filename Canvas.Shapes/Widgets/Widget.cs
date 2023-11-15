@@ -11,21 +11,28 @@ namespace Canvas.Shapes.Widgets
         {
             XCoordinate = xCoordinate;
             YCoordinate = yCoordinate;
-            Name = typeof(TShape).Name;
+            Name = this.GetType().Name;
             Renderer = new StringBuilder();
         }
 
         public string Name { get; set; }
         public int XCoordinate { get; set; }
         public int YCoordinate { get; set; }
-        public double Size { get; set;  }
+        public double Size { get; set; }
 
         public StringBuilder Renderer { get; set; }
 
-        public void SetName(string name)
-            => Name = name;
+        protected virtual void OnDraw()
+        {
+        }
 
         public virtual string Draw()
-            => Renderer.ToString();
+        {
+            Renderer.Append($"{Name} ");
+            Renderer.Append($"Size:{Size} ");
+            Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
+            OnDraw();
+            return Renderer.ToString();
+        }
     }
 }

@@ -13,7 +13,6 @@ namespace Canvas.Shapes.Shapes
             string? text = null)
             : base(xCoordinate, yCoordinate, height, width)
         {
-            SetName(nameof(TextBox));
             Text = text;
             BackgroundColour = string.IsNullOrEmpty(text) ? ShapesConstants.DefaultTextBoxBackgroundColour : backgroundColour;
         }
@@ -21,15 +20,11 @@ namespace Canvas.Shapes.Shapes
         public string BackgroundColour { get; set; }
         public string Text { get; set; }
 
-        public override string Draw()
+        protected override void OnDraw()
         {
-            Renderer.Append($"{Name} ");
-            Renderer.Append($"Size:{Size} ");
-            Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
             Renderer.Append($"(Height:{Height}, Width:{Width}) ");
             Renderer.Append($"Background Colour:{BackgroundColour} ");
             Renderer.Append($"Text:{Text} ");
-            return Renderer.ToString();
         }
     }
 }

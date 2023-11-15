@@ -14,19 +14,15 @@ namespace Canvas.Shapes.Shapes
         {
             HorizontalDiameter = horizontalDiameter;
             VerticalDiameter = verticalDiameter;
-            Size = HorizontalDiameter * VerticalDiameter * Math.PI;
+            Size = Math.Round(HorizontalDiameter * VerticalDiameter * Math.PI, ShapesConstants.MaxDecimalPlaces);
         }
 
         public int HorizontalDiameter { get; set; }
         public int VerticalDiameter { get; set; }
 
-        public override string Draw()
+        protected override void OnDraw()
         {
-            Renderer.Append($"{Name} ");
-            Renderer.Append($"Size:{Math.Round(Size, ShapesConstants.MaxDecimalPlaces)} ");
             Renderer.Append($"(Horizontal Diameter:{HorizontalDiameter}, Vertical Diameter:{VerticalDiameter}) ");
-            Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
-            return Renderer.ToString();
         }
     }
 }
