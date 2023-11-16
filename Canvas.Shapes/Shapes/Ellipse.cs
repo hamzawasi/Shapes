@@ -3,8 +3,12 @@ using Shapes.Helper;
 
 namespace Canvas.Shapes.Shapes
 {
-    public class Ellipse : Widget<Ellipse>
+    public class Ellipse : Widget
     {
+        public Ellipse()
+        {
+        }
+
         public Ellipse(
             int xCoordinate,
             int yCoordinate,
@@ -23,6 +27,23 @@ namespace Canvas.Shapes.Shapes
         protected override void OnDraw()
         {
             Renderer.Append($"(Horizontal Diameter:{HorizontalDiameter}, Vertical Diameter:{VerticalDiameter}) ");
+        }
+
+        public override void PromptForAttributes()
+        {
+            base.PromptForAttributes();
+
+            Console.WriteLine("Enter HorizontalDiameter: ");
+            HorizontalDiameter = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter VerticalDiameter: ");
+            VerticalDiameter = int.Parse(Console.ReadLine());
+        }
+
+        public override Widget CreateWidgetFromPrompt()
+        {
+            PromptForAttributes();
+            return new Ellipse(XCoordinate, YCoordinate, HorizontalDiameter, VerticalDiameter);
         }
     }
 }

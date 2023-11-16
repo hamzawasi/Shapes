@@ -1,19 +1,13 @@
-﻿using Canvas.Shapes.Shapes;
+﻿using Canvas.Executable;
+using Microsoft.Extensions.DependencyInjection;
+using Shapes.Helper;
 
-var square = new Square(10, 10);
-Console.WriteLine(square.Draw());
+ServiceCollection serviceCollection = new ServiceCollection();
+serviceCollection.AddAllTypes<ICanvasPainter>();
+ServiceProvider provider = serviceCollection.BuildServiceProvider();
 
-var rectangle = new Rectangle(10, 10, 5, 5);
-Console.WriteLine(rectangle.Draw());
+CanvasPainter canvasPainter = provider.GetRequiredService<CanvasPainter>();
 
-var circle = new Circle(10, 10, 5.25);
-Console.WriteLine(circle.Draw());
-
-var ellipse = new Ellipse(10, 10, 5, 5);
-Console.WriteLine(ellipse.Draw());
-
-var textBox1 = new TextBox(10, 10, 5, 5, "Blue");
-Console.WriteLine(textBox1.Draw());
-
-var textBox2 = new TextBox(10, 10, 5, 5, "Blue", "Hello");
-Console.WriteLine(textBox2.Draw());
+canvasPainter.GreetUser(); ;
+canvasPainter.PromptForWidgets();;
+canvasPainter.PrintCanvas();

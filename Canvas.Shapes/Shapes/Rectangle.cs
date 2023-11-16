@@ -1,24 +1,36 @@
-﻿namespace Canvas.Shapes.Shapes
+﻿using Canvas.Shapes.Widgets;
+
+namespace Canvas.Shapes.Shapes
 {
     public class Rectangle : Square
     {
+        public Rectangle()
+        {
+        }
+
         public Rectangle(
             int xCoordinate,
             int yCoordinate,
             int height,
             int width)
-            : base(xCoordinate, yCoordinate)
+            : base(xCoordinate, yCoordinate, height, width)
         {
-            Height = height;
-            Width = width;
         }
-
-        public int Height { get; set; }
-        public int Width { get; set; }
 
         protected override void OnDraw()
         {
             Renderer.Append($"(Height:{Height}, Width:{Width}) ");
+        }
+
+        public override void PromptForAttributes()
+        {
+            base.PromptForAttributes();
+        }
+
+        public override Rectangle CreateWidgetFromPrompt()
+        {
+            PromptForAttributes();
+            return new Rectangle(XCoordinate, YCoordinate, Height, Width);
         }
     }
 }

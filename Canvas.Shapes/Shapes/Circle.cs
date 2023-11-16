@@ -3,8 +3,12 @@ using Shapes.Helper;
 
 namespace Canvas.Shapes.Shapes
 {
-    public class Circle : Widget<Circle>
+    public class Circle : Widget
     {
+        public Circle()
+        {
+        }
+
         public Circle(
             int xCoordinate,
             int yCoordinate,
@@ -16,5 +20,18 @@ namespace Canvas.Shapes.Shapes
         }
 
         public double Radius { get; set; }
+
+        public override void PromptForAttributes()
+        {
+            base.PromptForAttributes();
+
+            Console.WriteLine("Enter Radius: ");
+            Radius = double.Parse(Console.ReadLine());
+        }
+        public override Widget CreateWidgetFromPrompt()
+        {
+            base.PromptForAttributes();
+            return new Circle(XCoordinate, YCoordinate, Radius);
+        }
     }
 }

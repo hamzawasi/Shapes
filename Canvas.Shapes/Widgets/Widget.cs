@@ -2,9 +2,12 @@
 
 namespace Canvas.Shapes.Widgets
 {
-    public abstract class Widget<TShape> : IWidget
-        where TShape : Widget<TShape>
+    public abstract class Widget : IWidget
     {
+        public Widget()
+        {
+        }
+
         public Widget(
             int xCoordinate,
             int yCoordinate)
@@ -33,6 +36,17 @@ namespace Canvas.Shapes.Widgets
             Renderer.Append($"(x:{XCoordinate}, y:{YCoordinate}) ");
             OnDraw();
             return Renderer.ToString();
+        }
+
+        public abstract Widget CreateWidgetFromPrompt();
+
+        public virtual void PromptForAttributes()
+        {
+            Console.WriteLine("Enter XCoordinate: ");
+            XCoordinate = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter YCoordinate: ");
+            YCoordinate = int.Parse(Console.ReadLine());
         }
     }
 }
